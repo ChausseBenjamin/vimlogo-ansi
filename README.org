@@ -29,11 +29,11 @@
    Well, the idea to do this came to me as I was browsing the vim subreddit
    (as one does) and saw [[https://www.reddit.com/r/vim/comments/1e5o998/if_were_sharing_vim_pixel_art][this post]] by ~u/fapperruning~ where he drew
    the vim logo with pixel art. The size was small enough it could nicely fit
-   in a terminal window, though big enough it waas no feasible to draw by hand.
+   in a terminal window, though big enough it was not feasible to draw by hand.
 
-   So using this as a starting point, I searched for a way to firstly parse the image
+   So using this as a starting point, I searched for a way to parse the image
    and found [[https://www.piskelapp.com/p/create/sprite][Piskel]]. The amazing thing about Piskel is that it allows you to export
-   a sprite as a big integer array written in C. The first thing I did was to
+   a sprite as a big integer array written in a C file. The first thing I did was to
    downscale ~u/fapperruning~'s image so that 1 pixel = 1 square in the sprite.
    I the slightly modified Piskel's C file output so that it corresponds to a Go slice
    of 32-bit unsigned integers.

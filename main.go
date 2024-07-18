@@ -54,11 +54,9 @@ func mkPixelStack(top, bot pixel) string {
 	case noTop && noBot:
 		return " "
 	case noTop:
-		return fmt.Sprintf(botFmt+postFmt,
-			bot.r, bot.g, bot.b)
+		return fmt.Sprintf(botFmt+postFmt, bot.r, bot.g, bot.b)
 	case noBot:
-		return fmt.Sprintf(topFmt+postFmt,
-			top.r, top.g, top.b)
+		return fmt.Sprintf(topFmt+postFmt, top.r, top.g, top.b)
 	default:
 		return fmt.Sprintf(topFmt+botFmt+postFmt,
 			top.r, top.g, top.b,
@@ -77,8 +75,7 @@ func (p pixelArt) draw(stream io.Writer) {
 
 	if p.height%2 != 0 {
 		for i := range top {
-			top[i] = pixel{0, 0, 0}
-			bot[i] = int2Pixel(p.pixels[0])
+			top[i], bot[i] = pixel{0, 0, 0}, int2Pixel(p.pixels[0])
 		}
 		drawRowStack(top, bot)
 		topIdx += step
