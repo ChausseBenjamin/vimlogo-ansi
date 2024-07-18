@@ -43,6 +43,12 @@
    any slice of 32-bit integers (as well as the width and height of the image) and it will
    spit it out on your glorious terminal.
 
+   In the end, this is how it came out:
+
+    #+HTML: <div align="center">
+    #+HTML: <img alt="Terminal printout of the program" src="showcase.png" width="250" /><br/>
+    #+HTML: </div>
+
    *Note*: Your terminal must be able to display [[https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#rgb-colors][true colors]] if you want to try/use this.
 
 ** How to build
