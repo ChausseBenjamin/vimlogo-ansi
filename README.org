@@ -1,0 +1,56 @@
+#+author: Benjamin Chausse <benjamin@chausse.xyz>
+
+#+HTML: <div align="center">
+
+* VimLogo - ANSI
+
+#+HTML: </div>
+
+  This is a small terminal program that prints the Vim logo in using ANSI escape codes.
+  It utilizes the fact that terminal fonts have a heightxwith ratio of 2x1 combined with
+  the ~▀~ character that covers the top half of a character.
+
+  Since terminals can set a different foreground and background color for each character,
+  we can essentially draw 2 vertically stacked pixels per character.
+
+  This is where ANSI escape codes come in. If your terminal supports 24-bit colors, you can
+  set foregrounds and background to any rgb value:
+
+  - ~\033[38;2;22;33;44m~ sets the foreground color to rgb(22, 33, 44)
+  - ~\033[48;2;44;55;66m~ sets the background color to rgb(44, 55, 66)
+
+  [[https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#file-ansi-md][This github gist]] was an invaluable resource for gaining a deeper
+  understanding of ANSI escape codes and how to use them to draw graphics in
+  the terminal. I highly recommend checking it out if you're interested in
+  learning more about this topic.
+
+** So why the Vim logo?
+
+   Well, the idea to do this came to me as I was browsing the vim subreddit
+   (as one does) and saw [[][this post]] by ~u/fapperruning~ where he drew
+   the vim logo with pixel art. The size was small enough it could nicely fit
+   in a terminal window, though big enough it waas no feasible to draw by hand.
+
+   So using this as a starting point, I searched for a way to firstly parse the image
+   and found [[https://www.piskelapp.com/p/create/sprite][Piskel]]. The amazing thing about Piskel is that it allows you to export
+   a sprite as a big integer array written in C. The first thing I did was to
+   downscale ~u/fapperruning~'s image so that 1 pixel = 1 square in the sprite.
+   I the slightly modified Piskel's C file output so that it corresponds to a Go slice
+   of 32-bit unsigned integers.
+
+
+   So if you want, this code really doesn't have to be about the Vim logo. Just give it
+   any slice of 32-bit integers (as well as the width and height of the image) and it will
+   spit it out on your glorious terminal.
+
+   *Note*: Your terminal must be able to display [[https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#rgb-colors][true colors]] if you want to try/use this.
+
+** How to build
+
+   First, you must have Go installed (duh)...
+
+   Once that's done, just clone the repo, ~cd~ into it and run:
+
+   #+begin_src sh
+   go build -o vimlogo-ansi *.go
+   #+end_src
