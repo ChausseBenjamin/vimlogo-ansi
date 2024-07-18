@@ -41,12 +41,6 @@ func int2Pixel(src uint32) pixel {
 	}
 }
 
-type drawing struct {
-	height int
-	width  int
-	pixels []pixel
-}
-
 func mkPixelStack(top, bot pixel) string {
 	noTop := (int(top.r+top.g+top.b) == 0)
 	noBot := (int(bot.r+bot.g+bot.b) == 0)
